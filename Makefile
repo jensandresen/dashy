@@ -1,8 +1,11 @@
-NAME=$(or ${CONTAINER_NAME},dashy)
+NAME=dashy
 
 .PHONY: build
 build:
 	docker build -t $(NAME) .
+
+az:
+	az --version
 
 setup: build
 

@@ -4,11 +4,11 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+  - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  - script: make build az
+    displayName: "Run build, test and delivery steps"
