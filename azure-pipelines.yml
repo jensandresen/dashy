@@ -10,7 +10,7 @@ pool:
   vmImage: "ubuntu-latest"
 
 steps:
-  - displayName: "Run build, test and delivery steps"
-    script: |
+  - script: |
       az --help  
       make cd
+    displayName: "Run build, test and delivery steps"
