@@ -13,9 +13,5 @@ steps:
   - script: |
       # docker run --rm --privileged multiarch/qemu-user-static:register --reset
       docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-      docker buildx create --name mybuilder
-      docker buildx use mybuilder
-      docker buildx inspect --bootstrap
-
-      # make cd
+      make cd
     displayName: "Run build, test and delivery steps"

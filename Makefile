@@ -11,7 +11,7 @@ build:
 deliver:
 	echo "docker push $(NAME)"
 
-cd: PLATFORM=linux/arm/7
+cd: PLATFORM=linux/arm/v7
 cd: build deliver
 
 az:
