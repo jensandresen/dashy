@@ -11,7 +11,6 @@ pool:
 
 steps:
   - script: |
-      docker buildx inspect
-      docker buildx ls
-      # make cd
+      docker run --rm --privileged multiarch/qemu-user-static:register --reset
+      make cd
     displayName: "Run build, test and delivery steps"
