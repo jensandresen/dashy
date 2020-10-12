@@ -11,7 +11,7 @@ pool:
 
 steps:
   - script: |
-      # docker run --rm --privileged multiarch/qemu-user-static:register --reset
       docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-      make cd
+      docker login mondayworks.azurecr.io --username $CD_SP_APP_ID --password $CD_SP_PASSWORD
+      make cd BUILD_NUMBER=$(Build.BuildNumber)
     displayName: "Run build, test and delivery steps"
