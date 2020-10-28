@@ -11,12 +11,7 @@ pool:
 
 steps:
   - script: |
-      echo "username: $(CD_SP_APP_ID)" >> $PIPELINE_WORKSPACE/secrets.txt
-      echo "password: $(CD_SP_PASSWORD)" >> $PIPELINE_WORKSPACE/secrets.txt
+      docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+      docker login mondayworks.azurecr.io --username $(CD_SP_APP_ID) --password $(CD_SP_PASSWORD)
+      make cd BUILD_NUMBER=$(Build.BuildNumber)
     displayName: "Run build, test and delivery steps"
-
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: '$(Pipeline.Workspace)/secrets.txt'
-      artifact: 'Secrets'
-      publishLocation: 'pipeline'
