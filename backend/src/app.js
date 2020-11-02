@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import { getVersion } from "./system";
 import socketio from "socket.io";
 import { eventDispatcher } from "./service-registry";
 import { resolve } from "path";
+import registerRoutes from "./routes";
 
 const app = express();
 app.use(cors());
@@ -15,11 +15,7 @@ app.get("/", (req, res) => {
   res.sendFile(resolve(process.cwd(), "public", "index.html"));
 });
 
-app.get("/api/system/version", (req, res) => {
-  res.send({
-    version: getVersion(),
-  });
-});
+registerRoutes(app);
 
 // routes: end ----------------------------------
 

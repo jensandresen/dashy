@@ -14,6 +14,8 @@ COPY backend/package*.json ./
 RUN npm install
 COPY backend/src ./src
 COPY --from=frontend-builder /app-source/build /app/public
+COPY backend/data /data
 ARG build_number=unset
 ENV APP_VERSION=${build_number}
+ENV DATA_DIR=/data
 ENTRYPOINT [ "npm", "start" ]

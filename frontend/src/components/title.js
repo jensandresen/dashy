@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React, { useEffect, useState } from "react";
 import { css, jsx } from "@emotion/core";
 
 export default function Title({ children }) {
