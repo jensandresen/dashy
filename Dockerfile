@@ -1,12 +1,19 @@
-FROM node:alpine as builder
+FROM node:alpine as frontend-builder
 RUN apk add yarn
 WORKDIR /app-source
-COPY ./package*.json ./
-COPY ./jsconfig.json ./
+COPY ./frontend/package*.json ./
+COPY ./frontend/jsconfig.json ./
 RUN yarn install
-COPY public ./public
-COPY src ./src
+COPY frontend/public ./public
+COPY frontend/src ./src
 RUN yarn build
 
-FROM nginx:alpine
-COPY --from=builder /app-source/build /usr/share/nginx/html
+FROM node:alpine
+WORKDIR /app
+COPY backend/package*.json ./
+RUN npm install
+COPY backend/src ./src
+COPY --from=frontend-builder /app-source/build /app/public
+ARG build_number=unset
+ENV APP_VERSION=${build_number}
+ENTRYPOINT [ "npm", "start" ]

@@ -1,6 +1,0 @@
-version: 1
-configuration:
-  commands:
-    setup: echo "make setup"
-    run: echo "make run"
-    teardown: echo "make teardown"
