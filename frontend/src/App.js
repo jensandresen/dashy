@@ -1,17 +1,18 @@
 import React from "react";
 import Widgets from "./widgets";
-import Sidebar from "components/sidebar";
+import { Columns, Column } from "components/layout";
 
 export default function App() {
   return (
-    <div className="App">
-      <Sidebar side="left">
+    <Columns>
+      <Column>
         <Widgets.Time />
-      </Sidebar>
-
-      <Sidebar side="right">
+      </Column>
+      <Column></Column>
+      <Column></Column>
+      <Column>
         <Widgets.CurrentWeather />
-      </Sidebar>
-    </div>
+      </Column>
+    </Columns>
   );
 }
