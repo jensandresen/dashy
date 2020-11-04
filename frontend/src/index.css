@@ -5,3 +5,19 @@ body {
   line-height: 16px;
   padding: 2rem;
 }
+
+.white {
+  fill: #ededed;
+}
+.gray {
+  fill: #a0a0a0;
+}
+.yellow {
+  fill: #fcc268;
+}
+.st1 {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+}
