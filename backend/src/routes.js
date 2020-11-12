@@ -1,5 +1,14 @@
 import { getVersion } from "./system";
-import { getTemperature } from "./weather";
+import {
+  getTemperature,
+  getIconCode,
+  getFeelsLikeTemperature,
+  getHumidity,
+  getPressure,
+  getSunDown,
+  getSunUp,
+  getWindSpeed,
+} from "./weather";
 
 export default function registerRoutes(app) {
   app.get("/api/system/version", (req, res) => {
@@ -11,8 +20,13 @@ export default function registerRoutes(app) {
   app.get("/api/weather/current", (req, res) => {
     res.send({
       temperature: getTemperature(),
-      sunUp: "?",
-      sunDown: "?",
+      feelsLikeTemperature: getFeelsLikeTemperature(),
+      sunUp: getSunUp(),
+      sunDown: getSunDown(),
+      pressure: getPressure(),
+      humidity: getHumidity(),
+      wind: getWindSpeed(),
+      iconCode: getIconCode(),
     });
   });
 }

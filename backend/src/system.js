@@ -1,3 +1,6 @@
+const instanceVersion = new Date().getTime();
+
 export function getVersion() {
-  return process.env.APP_VERSION || "n/a";
+  return instanceVersion;
+  // return process.env.APP_VERSION || "n/a";
 }

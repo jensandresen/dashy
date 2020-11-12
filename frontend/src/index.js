@@ -13,7 +13,7 @@ setInterval(() => {
         if (!appVersion) {
           appVersion = data.version;
         } else {
-          if (appVersion != data.version) {
+          if (appVersion !== data.version) {
             window.location.href = "/";
           }
         }

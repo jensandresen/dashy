@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import React from "react";
+import { Children, cloneElement } from "react";
 
 function Container({ width, children }) {
   return (
@@ -12,7 +12,17 @@ function Container({ width, children }) {
         margin: 10px;
       `}
     >
-      {children}
+      {Children.map(children, (child) =>
+        cloneElement(child, {
+          style: {
+            ...child.style,
+            ...{
+              width: "100%",
+              height: "100%",
+            },
+          },
+        })
+      )}
     </div>
   );
 }
@@ -137,7 +147,7 @@ export function Rainy({ width }) {
             <animate
               attributeType="CSS"
               attributeName="opacity"
-              attributeType="XML"
+              // attributeType="XML"
               dur="1s"
               keyTimes="0;1"
               repeatCount="indefinite"
@@ -270,7 +280,7 @@ export function CloudyWithSun({ width }) {
               <animate
                 attributeType="CSS"
                 attributeName="opacity"
-                attributeType="XML"
+                // attributeType="XML"
                 dur="0.5s"
                 keyTimes="0;0.5;1"
                 repeatCount="indefinite"
@@ -401,7 +411,7 @@ export function CloudyWithLightning({ width }) {
             <animate
               attributeType="CSS"
               attributeName="opacity"
-              attributeType="XML"
+              // attributeType="XML"
               dur="1.5s"
               keyTimes="0;0.5;1"
               repeatCount="indefinite"
@@ -568,7 +578,7 @@ export function CloudyWithRainAndLightning({ width }) {
             <animate
               attributeType="CSS"
               attributeName="opacity"
-              attributeType="XML"
+              // attributeType="XML"
               dur="1.5s"
               keyTimes="0;0.5;1"
               repeatCount="indefinite"
@@ -605,7 +615,7 @@ export function CloudyWithRainAndLightning({ width }) {
             <animate
               attributeType="CSS"
               attributeName="opacity"
-              attributeType="XML"
+              // attributeType="XML"
               dur="1s"
               keyTimes="0;1"
               repeatCount="indefinite"
@@ -685,7 +695,7 @@ export function Sunny({ width }) {
             <animate
               attributeType="CSS"
               attributeName="opacity"
-              attributeType="XML"
+              // attributeType="XML"
               dur="0.5s"
               keyTimes="0;0.5;1"
               repeatCount="indefinite"
@@ -790,7 +800,7 @@ export function SunnyWithWind({ width }) {
               <animate
                 attributeType="CSS"
                 attributeName="opacity"
-                attributeType="XML"
+                // attributeType="XML"
                 dur="0.5s"
                 keyTimes="0;0.5;1"
                 repeatCount="indefinite"
@@ -839,7 +849,7 @@ export function SunnyWithWind({ width }) {
             <animate
               attributeType="CSS"
               attributeName="opacity"
-              attributeType="XML"
+              // attributeType="XML"
               dur="1.5s"
               keyTimes="0;1"
               repeatCount="indefinite"

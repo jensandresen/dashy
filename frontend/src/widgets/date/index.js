@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import React, { useEffect, useState } from "react";
-import { css, jsx } from "@emotion/core";
+import { useEffect, useState } from "react";
+import { jsx } from "@emotion/core";
 import { Title, Big, PowerOf } from "components/text";
 
 const dayLabels = [
