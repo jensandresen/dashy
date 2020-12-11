@@ -1,31 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { useEffect, useState } from "react";
-import { Title, Big, PowerOf } from "components/text";
+import { Big, PowerOf } from "components/text";
 import { Columns, Column } from "components/layout";
 import moment from "moment";
-
-import {
-  Sunny,
-  ClearNight,
-  CloudyWithSun,
-  CloudyWithMoon,
-  Cloudy,
-  Rainy,
-  CloudyWithRainAndLightning,
-  Snowy,
-  SunnyWithWind,
-  // CloudyWithLightning,
-} from "./icons";
-
-function SunUpDown({ up, down }) {
-  return (
-    <Title>
-      <span>Sol op: {up}</span>
-      <span>Sol Ned: {down}</span>
-    </Title>
-  );
-}
+import WeatherIcon from "./weather-icon";
 
 function Temperature({ temperature }) {
   return (
@@ -34,33 +13,6 @@ function Temperature({ temperature }) {
       <PowerOf>o</PowerOf>
     </span>
   );
-}
-
-function WeatherIcon({ iconCode }) {
-  const width = "6rem";
-
-  switch (iconCode) {
-    case 1:
-      return <Sunny width={width} />;
-    case 2:
-      return <ClearNight width={width} />;
-    case 3:
-      return <CloudyWithSun width={width} />;
-    case 4:
-      return <CloudyWithMoon width={width} />;
-    case 5:
-      return <Cloudy width={width} />;
-    case 6:
-      return <Rainy width={width} />;
-    case 7:
-      return <CloudyWithRainAndLightning width={width} />;
-    case 8:
-      return <Snowy width={width} />;
-    case 9:
-      return <SunnyWithWind width={width} />;
-    default:
-      return null;
-  }
 }
 
 function DayStats({ sunUp, sunDown, wind, pressure, humidity }) {

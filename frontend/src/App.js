@@ -12,6 +12,7 @@ export default function App() {
       <Column></Column>
       <Column>
         <Widgets.CurrentWeather />
+        {/* <Widgets.UpcommingWeather /> */}
       </Column>
     </Columns>
   );

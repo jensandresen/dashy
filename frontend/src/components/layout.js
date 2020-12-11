@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { css as makeCss, jsx } from "@emotion/core";
 import React from "react";
 import styled from "@emotion/styled";
 
@@ -15,8 +17,8 @@ export function Columns({ height = null, children }) {
   return <Container>{children}</Container>;
 }
 
-export function Column({ children }) {
-  const Container = styled.div`
+export function Column({ css, children }) {
+  const base = makeCss`
     flex-grow: 1;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -32,5 +34,9 @@ export function Column({ children }) {
     // border: 1px dashed pink;
   `;
 
-  return <Container>{children}</Container>;
+  return (
+    <div css={makeCss([css, base])} data-lala={JSON.stringify(css)}>
+      {children}
+    </div>
+  );
 }
