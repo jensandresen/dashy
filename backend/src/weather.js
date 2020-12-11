@@ -5,8 +5,12 @@ import moment from "moment";
 
 let cachedData = null;
 
+function getDataDirPath() {
+  return process.env.DATA_DIR || path.resolve(process.cwd(), "data");
+}
+
 function getDataFilePath() {
-  const dataDir = process.env.DATA_DIR || path.resolve(process.cwd(), "data");
+  const dataDir = getDataDirPath();
   return path.resolve(dataDir, "weather.json");
 }
 
@@ -24,8 +28,21 @@ function getCachedData() {
   return cachedData;
 }
 
+function getUrl() {
+  const dataDirPath = getDataDirPath();
+  const filePath = path.join(dataDirPath, "weather-service-url.txt");
+
+  const exists = fs.existsSync(filePath);
+  if (exists) {
+    const content = fs.readFileSync(filePath, { encoding: "utf8" });
+    return content.trim();
+  }
+
+  return null;
+}
+
 function downloadData() {
-  const url = process.env.WEATHER_DATA_URL;
+  const url = getUrl();
   if (!url) {
     return;
   }
