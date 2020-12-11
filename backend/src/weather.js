@@ -96,15 +96,8 @@ export function getWindSpeed() {
   return data.current.wind_speed;
 }
 
-export function getIconCode() {
-  const data = getCachedData();
-  const weather = data.current.weather;
-
-  if (!weather || weather.length !== 1) {
-    return -1;
-  }
-
-  const code = weather[0].icon || "";
+function translateIconCode(iconCode) {
+  const code = iconCode || "";
 
   switch (code.toLowerCase()) {
     case "01d":
@@ -137,4 +130,34 @@ export function getIconCode() {
     default:
       return -1;
   }
+}
+
+export function getIconCode() {
+  const data = getCachedData();
+  const weather = data.current.weather;
+
+  if (!weather || weather.length !== 1) {
+    return -1;
+  }
+
+  return translateIconCode(weather[0].icon);
+}
+
+export function getUpcomming() {
+  const data = getCachedData();
+  const days = data.daily || [];
+
+  return days.map((day) => {
+    return {
+      date: moment.unix(day.dt).utc(),
+      temperature: day.temp.day,
+      temperatureNight: day.temp.night,
+      temperatureMin: day.temp.min,
+      temperatureMax: day.temp.max,
+      wind: day.wind_speed,
+      rainProbability: day.pop,
+      description: day.weather.description,
+      iconCode: translateIconCode(day.weather[0].icon),
+    };
+  });
 }

@@ -93,7 +93,7 @@ export default function CurrentWeather() {
     <div>
       <Columns height="10rem">
         <Column>
-          <WeatherIcon iconCode={iconCode} />
+          <WeatherIcon iconCode={iconCode} size="large" />
         </Column>
         <Column>
           <div

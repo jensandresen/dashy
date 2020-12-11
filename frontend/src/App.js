@@ -12,7 +12,7 @@ export default function App() {
       <Column></Column>
       <Column>
         <Widgets.CurrentWeather />
-        {/* <Widgets.UpcommingWeather /> */}
+        <Widgets.UpcommingWeather />
       </Column>
     </Columns>
   );

@@ -32,14 +32,23 @@ function Section({ children }) {
   );
 }
 
-function DayView({ date, iconCode }) {
+function DayView({
+  date,
+  iconCode,
+  rainProbability,
+  wind,
+  temperature,
+  temperatureNight,
+}) {
   const dayNames = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"];
   const getDayName = () => {
     let index = moment(date).day();
     if (index === 0) {
-      index = 8;
+      index = 7;
     }
-    return dayNames[index - 1];
+
+    index--;
+    return dayNames[index];
   };
 
   return (
@@ -54,7 +63,7 @@ function DayView({ date, iconCode }) {
       </Section>
 
       <Section>
-        <WeatherIcon iconCode={iconCode} size="3rem;" />
+        <WeatherIcon iconCode={iconCode} size="medium" />
       </Section>
 
       <Section>
@@ -74,7 +83,7 @@ function DayView({ date, iconCode }) {
               >
                 Dag
               </div>
-              <Temperature temperature={15} />
+              <Temperature temperature={temperature} />
             </div>
           </Column>
           <Column>
@@ -92,7 +101,7 @@ function DayView({ date, iconCode }) {
               >
                 Nat
               </div>
-              <Temperature temperature={4} />
+              <Temperature temperature={temperatureNight} />
             </span>
           </Column>
         </Columns>
@@ -114,7 +123,7 @@ function DayView({ date, iconCode }) {
               >
                 Regn
               </div>
-              34%
+              {rainProbability * 100}%
             </div>
           </Column>
           <Column>
@@ -132,7 +141,7 @@ function DayView({ date, iconCode }) {
               >
                 Vind
               </div>
-              3 m/s
+              {wind} m/s
             </div>
           </Column>
         </Columns>
@@ -156,31 +165,10 @@ export default function UpcommingWeather() {
     return () => clearInterval(handle);
   }, []);
 
-  const days = [
-    {
-      date: new Date(),
-      iconCode: 1,
-    },
-    {
-      date: new Date(),
-      iconCode: 2,
-    },
-    {
-      date: new Date(),
-      iconCode: 3,
-    },
-    {
-      date: new Date(),
-      iconCode: 4,
-    },
-    {
-      date: new Date(),
-      iconCode: 5,
-    },
-  ].map((day) => {
+  const days = (weather.days || []).slice(1, 6).map((day, index) => {
     return (
       <Column
-        key={day.date.getTime()}
+        key={day.date}
         css={css`
           border-left: 1px solid white;
         `}
@@ -193,10 +181,6 @@ export default function UpcommingWeather() {
   return (
     <div>
       <Columns>{days}</Columns>
-      <div>
-        <i className="wu wu-white wu-32 wu-chancerain"></i>
-        <i className="wu wu-128 wu-white wu-day wu-chanceflurries"></i>
-      </div>
     </div>
   );
 }

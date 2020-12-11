@@ -8,6 +8,7 @@ import {
   getSunDown,
   getSunUp,
   getWindSpeed,
+  getUpcomming,
 } from "./weather";
 
 export default function registerRoutes(app) {
@@ -27,6 +28,12 @@ export default function registerRoutes(app) {
       humidity: getHumidity(),
       wind: getWindSpeed(),
       iconCode: getIconCode(),
+    });
+  });
+
+  app.get("/api/weather/upcomming", (req, res) => {
+    res.send({
+      days: getUpcomming(),
     });
   });
 }
