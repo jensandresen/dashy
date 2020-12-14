@@ -29,6 +29,11 @@ function getCachedData() {
 }
 
 function getUrl() {
+  const envUrl = process.env.WEATHER_URL;
+  if (envUrl && envUrl.trim() !== "") {
+    return envUrl.trim();
+  }
+
   const dataDirPath = getDataDirPath();
   const filePath = path.join(dataDirPath, "weather-service-url.txt");
 
@@ -158,6 +163,21 @@ export function getUpcomming() {
       rainProbability: day.pop,
       description: day.weather.description,
       iconCode: translateIconCode(day.weather[0].icon),
+    };
+  });
+}
+
+export function getHourly() {
+  const data = getCachedData();
+  const hours = data.hourly || [];
+
+  return hours.map((hour) => {
+    return {
+      date: moment.unix(hour.dt).utc(),
+      temperature: hour.temp,
+      wind: hour.wind_speed,
+      rainProbability: hour.pop,
+      iconCode: translateIconCode(hour.weather[0].icon),
     };
   });
 }

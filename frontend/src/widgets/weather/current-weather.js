@@ -1,19 +1,11 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { useEffect, useState } from "react";
-import { Big, PowerOf } from "components/text";
+import { Big } from "components/text";
 import { Columns, Column } from "components/layout";
 import moment from "moment";
 import WeatherIcon from "./weather-icon";
-
-function Temperature({ temperature }) {
-  return (
-    <span>
-      {(temperature || 0).toFixed(0)}
-      <PowerOf>o</PowerOf>
-    </span>
-  );
-}
+import Temperature from "./temperature";
 
 function DayStats({ sunUp, sunDown, wind, pressure, humidity }) {
   const stats = [

@@ -1,21 +1,11 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { useEffect, useState } from "react";
-import { Big, PowerOf, Title } from "components/text";
+import { Title } from "components/text";
 import { Columns, Column } from "components/layout";
 import moment from "moment";
+import Temperature from "./temperature";
 import WeatherIcon from "./weather-icon";
-
-import "weather-underground-icons";
-
-function Temperature({ temperature }) {
-  return (
-    <span>
-      {(temperature || 0).toFixed(0)}
-      <PowerOf>o</PowerOf>
-    </span>
-  );
-}
 
 function Section({ children }) {
   return (
@@ -179,7 +169,12 @@ export default function UpcommingWeather() {
   });
 
   return (
-    <div>
+    <div
+      css={css`
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      `}
+    >
       <Columns>{days}</Columns>
     </div>
   );

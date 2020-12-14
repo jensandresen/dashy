@@ -9,6 +9,7 @@ import {
   getSunUp,
   getWindSpeed,
   getUpcomming,
+  getHourly,
 } from "./weather";
 
 export default function registerRoutes(app) {
@@ -34,6 +35,12 @@ export default function registerRoutes(app) {
   app.get("/api/weather/upcomming", (req, res) => {
     res.send({
       days: getUpcomming(),
+    });
+  });
+
+  app.get("/api/weather/hourly", (req, res) => {
+    res.send({
+      hours: getHourly(),
     });
   });
 }
